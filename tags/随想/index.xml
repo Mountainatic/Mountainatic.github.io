@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>随想 on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/%E9%9A%8F%E6%83%B3/</link><description>Recent content in 随想 on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Sun, 10 Aug 2025 12:15:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/%E9%9A%8F%E6%83%B3/index.xml" rel="self" type="application/rss+xml"/><item><title>随想</title><link>https://mountainatic.github.io/memos/2025-08-10-random-thoughts/</link><pubDate>Sun, 10 Aug 2025 12:15:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-random-thoughts/</guid><description>&lt;p>从 Obsidian 迁移到 Hugo 真的很顺利，特别是语法兼容性做得很好。&lt;/p>
+&lt;p>现在可以：&lt;/p>
+&lt;ul>
+&lt;li>在 Obsidian 中写作&lt;/li>
+&lt;li>直接复制到 Hugo&lt;/li>
+&lt;li>自动部署到 GitHub Pages&lt;/li>
+&lt;/ul>
+&lt;p>这个工作流程很棒！ 🎉&lt;/p></description></item></channel></rss>

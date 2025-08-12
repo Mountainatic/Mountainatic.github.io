@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Callout on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/callout/</link><description>Recent content in Callout on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 11 Aug 2025 11:30:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/callout/index.xml" rel="self" type="application/rss+xml"/><item><title>Obsidian Callout 完整测试 - 修复版</title><link>https://mountainatic.github.io/posts/callout-fold-test/</link><pubDate>Mon, 11 Aug 2025 11:30:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/callout-fold-test/</guid><description>&lt;h1 id="obsidian-callout-完整测试">Obsidian Callout 完整测试
+&lt;/h1>&lt;h2 id="基本语法测试">基本语法测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE]
+基本的 note callout，无自定义标题。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!NOTE] 自定义标题
+带有自定义标题的 note callout。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="折叠语法测试仅识别不实现折叠">折叠语法测试（仅识别，不实现折叠）
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE+]
+默认展开的 note callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING-]
+默认折叠的 warning callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP+] 展开提示
+带自定义标题的展开 tip callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DANGER-] 折叠危险
+带自定义标题的折叠 danger callout。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="所有类型测试">所有类型测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!ABSTRACT]
+Abstract callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!SUMMARY] 摘要标题
+Summary 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TLDR] 太长不看
+TLDR 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!INFO]
+Info callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TODO]
+Todo callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP]
+Tip callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!HINT] 提示
+Hint 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!IMPORTANT] 重要
+Important 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!SUCCESS]
+Success callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!CHECK] 检查
+Check 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DONE] 完成
+Done 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUESTION]
+Question callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!HELP] 帮助
+Help 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!FAQ] 常见问题
+FAQ 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+Warning callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!CAUTION] 小心
+Caution 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!ATTENTION] 注意
+Attention 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!FAILURE]
+Failure callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!FAIL] 失败
+Fail 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!MISSING] 缺失
+Missing 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DANGER]
+Danger callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!ERROR] 错误
+Error 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!BUG]
+Bug callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!EXAMPLE]
+Example callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUOTE]
+Quote callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!CITE] 引用来源
+Cite 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="多行内容测试">多行内容测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE] 多行测试
+这是第一行内容。&lt;/p>
+&lt;p>这是第二行内容，中间有空行。&lt;/p>
+&lt;ul>
+&lt;li>列表项 1&lt;/li>
+&lt;li>列表项 2&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>粗体文本&lt;/strong> 和 &lt;em>斜体文本&lt;/em>。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="大小写测试">大小写测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!note] 小写
+小写 note 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING] 大写
+大写 WARNING 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TiP] 混合大小写
+混合大小写 TiP 测试。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

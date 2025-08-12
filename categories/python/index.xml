@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Mountainatic's Blog</title><link>https://mountainatic.github.io/categories/python/</link><description>Recent content in Python on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 11 Aug 2025 22:54:29 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/categories/python/index.xml" rel="self" type="application/rss+xml"/><item><title>%格式化</title><link>https://mountainatic.github.io/posts/%E6%A0%BC%E5%BC%8F%E5%8C%96/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/%E6%A0%BC%E5%BC%8F%E5%8C%96/</guid><description/></item><item><title>f string</title><link>https://mountainatic.github.io/posts/f-string/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/f-string/</guid><description/></item><item><title>format()</title><link>https://mountainatic.github.io/posts/format/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/format/</guid><description>&lt;h5 id="这是一个方法">————这是一个“方法”
+&lt;/h5>&lt;h3 id="基本语法">基本语法
+&lt;/h3>&lt;h3 id="一般格式化">一般格式化
+&lt;/h3>&lt;ul>
+&lt;li>一般参数依次填充&lt;/li>
+&lt;li>可以在 &lt;code>{}&lt;/code> 内写清楚标号（从 0 开始）然后 &lt;code>format()&lt;/code> 内参数按序号填入
+eg. &lt;code>print(&amp;quot;{1} {0} {1}&amp;quot;.format('hello', 'world'))&lt;/code>&lt;/li>
+&lt;li>也可以在 &lt;code>{}&lt;/code> 内写命名，然后 &lt;code>format()&lt;/code> 里带上
+eg. &lt;code>print(&amp;quot;name is {a}, from {b}&amp;quot;.format(a=&amp;quot;Alice&amp;quot;, b=&amp;quot;CN&amp;quot;))&lt;/code>&lt;/li>
+&lt;li>==两者可以混合使用==&lt;/li>
+&lt;/ul>
+&lt;h3 id="数字格式化">数字格式化
+&lt;/h3>&lt;ol>
+&lt;li>整数格式化：
+&lt;ol>
+&lt;li>十进制：&lt;code>{:d}&lt;/code>，正常表示&lt;/li>
+&lt;li>二进制：&lt;code>{:b}&lt;/code>，使用符号 &lt;code>0b&lt;/code> 或 &lt;code>0B&lt;/code> 前缀&lt;/li>
+&lt;li>八进制：&lt;code>{:o}&lt;/code>，使用符号 &lt;code>0o&lt;/code> 或 &lt;code>0O&lt;/code> 前缀&lt;/li>
+&lt;li>十六进制：&lt;code>{:x}&lt;/code>（大写 X 也可），使用 &lt;code>0x&lt;/code> 或 &lt;code>0X&lt;/code> 前缀&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>浮点数格式化：
+&lt;ol>
+&lt;li>定点表示法：&lt;code>{:.2f}&lt;/code> 或者 &lt;code>{:.2F}&lt;/code>，其中 2 是保留几位小数，==遇到 inf（无穷大）和 nan（非数字）时候，会直接输出 inf / nan，若是大写 F 则为 INF 和 NAN==&lt;/li>
+&lt;li>科学计数法：&lt;code>{:.2e}&lt;/code> 或者 &lt;code>{:.2E}&lt;/code>，数字意思同上，大小写决定输出 E 大小写&lt;/li>
+&lt;li>百分表示法：&lt;code>{:.2%}&lt;/code>，输出百分之形式和 %&lt;/li>
+&lt;li>通用表示法：&lt;code>{:.2g}&lt;/code> 或者 &lt;code>{:.2G}&lt;/code>，&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></description></item><item><title>matplotlib</title><link>https://mountainatic.github.io/posts/matplotlib/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/matplotlib/</guid><description>&lt;ul>
+&lt;li>&lt;strong>创建画布&lt;/strong>
+&lt;ul>
+&lt;li>&lt;code>fig, ax = plt.subplots()&lt;/code>&lt;/li>
+&lt;li>返回的值：
+&lt;ul>
+&lt;li>&lt;code>fig&lt;/code>：接收整个画布&lt;/li>
+&lt;li>&lt;code>ax&lt;/code>：接收所有图表，之后处理都是处理 ax 的方法&lt;/li>
+&lt;li>访问子图可以使用 ax[a][b] 数组访问&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>subplots()&lt;/code>可接受的参数：
+&lt;ul>
+&lt;li>a,b （行数，列数）：也可以写作&lt;code>ncows = a, ncols = b&lt;/code>，==唯一一个位置变量，写在开头，其他都是写上 参数 = 值 这样==&lt;/li>
+&lt;li>&lt;code>sharex&lt;/code>/&lt;code>sharey&lt;/code>：多个字图是否共享 x 轴 / y 轴，只为布尔值&lt;/li>
+&lt;li>&lt;code>squeeze&lt;/code>：是否压缩维度，True 时自动压缩全是 0 的行
+&lt;ul>
+&lt;li>也就是对于(1,1) (1,n) (n,1) 这种一维的，Python一般不会自动处理，当作二维处理&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>subplot_kw&lt;/code>：传递给子图的==统一==额外参数，写成 dict 形式
+&lt;ul>
+&lt;li>例如：
+&lt;ul>
+&lt;li>{‘polar’ = True} 启用极坐标图&lt;/li>
+&lt;li>{‘projection’ = 3d} 启用 3D 图&lt;/li>
+&lt;li>{‘frame_on’ = True} 启用子图的边框&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>gridspec_kw&lt;/code>：dict，控制子图的细节
+&lt;ul>
+&lt;li>例如：
+&lt;ul>
+&lt;li>‘width_ratios’: [1,2,1] 第二列表比1、3宽两倍&lt;/li>
+&lt;li>‘height_ratios’: 同上，高度比例&lt;/li>
+&lt;li>‘wspace’: 0.5 水平间距为 0.5 倍，只能在 0 - 1 之间&lt;/li>
+&lt;li>‘hspace’: 同上，垂直间距&lt;/li>
+&lt;li>‘left’ ‘right’ ‘top’ ‘bottom’: 0-1，留白大小，比例是拿图的长宽确定的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>figsize&lt;/code>：（float，float），元组，单位为英寸&lt;/li>
+&lt;li>&lt;code>dpi&lt;/code>：int&lt;/li>
+&lt;li>&lt;code>facecolor&lt;/code>/ &lt;code>edgecolor&lt;/code>：str，&lt;code>facecolor = ‘red’&lt;/code>，背景色 / 边框颜色&lt;/li>
+&lt;li>&lt;code>constrained_layout&lt;/code> / &lt;code>tight_layout&lt;/code>| &lt;code>layout = ‘constrained’&lt;/code>：自动布局
+旧版本是前面两个，新版本可以用最后面那个，constrained更新一点，适配更好&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title>Python main</title><link>https://mountainatic.github.io/posts/python_main/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/python_main/</guid><description>&lt;h2 id="1-注释">1. 注释
+&lt;/h2>&lt;ul>
+&lt;li>单行注释：#&lt;/li>
+&lt;li>多行注释：”””  ””” 或者’’’  ’’’这样括起来&lt;/li>
+&lt;li>tips：有变量接收叫多行字符串｜没有变量接收叫多行注释&lt;/li>
+&lt;/ul>
+&lt;h2 id="2-变量">2. 变量
+&lt;/h2>&lt;ul>
+&lt;li>&lt;strong>格式 ：x=&amp;hellip;&amp;hellip;&lt;/strong>&lt;/li>
+&lt;li>**字符串变量还是两种引号都行 **&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>[!notes]- &lt;strong>Features :&lt;/strong>&lt;br>
+1. 能一行声明多个变量 ：&lt;code>x, y, z = “banana”, “apple, “pear”&lt;/code>&lt;br>
+2. 能多个变量赋同值：&lt;code>x = y = z = “banana”&lt;/code>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;strong>print () 可以打印文本 &amp;amp; 变量&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>和&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>“+” 可以拼接任意相等的成分（包括本身和对应的变量）&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>==如果所拼接成分不相等，可以用强制类型转换==&lt;/strong>
+&lt;strong>== &lt;code>Eg. str(918230) + “is my number”&lt;/code> ==&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;h3 id="全局变量">全局变量
+&lt;/h3>&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>可以在所有函数外声明&lt;/li>
+&lt;li>在函数内创建或引用时，加 &lt;code>global&lt;/code> 字样&lt;/li>
+&lt;/ol>
+&lt;ol>
+&lt;li>函数内引用必须加 &lt;code>global&lt;/code> 啥啥啥，在global前面的同名变量在前面运作不受影响，在其后被替换&lt;/li>
+&lt;li>如果前面没有，但是使用了，Python 会按作用域逐层向外搜索该名变量&lt;/li>
+&lt;/ol>
+&lt;h2 id="3-数据类型">3. 数据类型
+&lt;/h2>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>内置类型&lt;/th>
+&lt;th>内容&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>文本&lt;/td>
+&lt;td>str&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>数值&lt;/td>
+&lt;td>int, float, complex&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>序列&lt;/td>
+&lt;td>list, tuple, range&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>映射&lt;/td>
+&lt;td>dict&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>集合&lt;/td>
+&lt;td>set, frozenset&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>布尔&lt;/td>
+&lt;td>bool&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>二进制&lt;/td>
+&lt;td>byte, bytearray, memoryview&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>用 &lt;code>type()&lt;/code> 获取任意对象的数据类型&lt;/li>
+&lt;li>强制类型转换（Casting）：如 &lt;code>str(), complex(), int()&lt;/code>&lt;/li>
+&lt;li>在给变量赋值时==设定特定数据类型==：&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>示例&lt;/th>
+&lt;th>数据类型&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>x = str(&amp;ldquo;Hello World&amp;rdquo;)&lt;/td>
+&lt;td>str&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = int(29)&lt;/td>
+&lt;td>int&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = float(29.5)&lt;/td>
+&lt;td>float&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = complex(1j)&lt;/td>
+&lt;td>complex&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = list((&amp;ldquo;apple&amp;rdquo;, &amp;ldquo;banana&amp;rdquo;, &amp;ldquo;cherry&amp;rdquo;))&lt;/td>
+&lt;td>list&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = tuple((&amp;ldquo;apple&amp;rdquo;, &amp;ldquo;banana&amp;rdquo;, &amp;ldquo;cherry&amp;rdquo;))&lt;/td>
+&lt;td>tuple&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = range(6)&lt;/td>
+&lt;td>range&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = dict(name=&amp;ldquo;Bill&amp;rdquo;, age=36)&lt;/td>
+&lt;td>dict&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = set((&amp;ldquo;apple&amp;rdquo;, &amp;ldquo;banana&amp;rdquo;, &amp;ldquo;cherry&amp;rdquo;))&lt;/td>
+&lt;td>set&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = frozenset((&amp;ldquo;apple&amp;rdquo;, &amp;ldquo;banana&amp;rdquo;, &amp;ldquo;cherry&amp;rdquo;))&lt;/td>
+&lt;td>frozenset&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = bool(5)&lt;/td>
+&lt;td>bool&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = bytes(5)&lt;/td>
+&lt;td>byte&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = bytearray(5)&lt;/td>
+&lt;td>bytearray&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x = memoryview(bytes(5))&lt;/td>
+&lt;td>memoryview&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="4-数字">4. 数字
+&lt;/h2>&lt;ul>
+&lt;li>数字类型：int, float, complex&lt;/li>
+&lt;li>==float 型有两种写法：89.23435 &amp;amp; -49.8e100/15E2==
+E/e 不分大小写，且 e 前面可以是大于 10 的数&lt;/li>
+&lt;li>随机数：有模块
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>[!notes]&lt;/p>
+&lt;ul>
+&lt;li>complex 型用 j 做虚数单位&lt;/li>
+&lt;li>强制类型转换中，float 变 int ==直接截断小数==
+int 变float ==会加一个 0==
+int 变 complex ==会有 0j==&lt;/li>
+&lt;li>上面说的是打印出的值&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>进制转换：十进制转换其他：&lt;code>bin()&lt;/code>, &lt;code>oct()&lt;/code>, &lt;code>hex()&lt;/code> 对应 binary、octal、hexadecimal
+其他转十进制：&lt;code>int(number, scale)&lt;/code> 前面填数字，后面填进制（2、8、16）&lt;/li>
+&lt;li>进制表示：十进制为 &lt;code>d&lt;/code>，直接写没符号
+二进制为 &lt;code>b&lt;/code>，前缀 &lt;code>0b&lt;/code> 或 &lt;code>0B&lt;/code>
+八进制为 &lt;code>o&lt;/code>，前缀 &lt;code>0o&lt;/code> 或 &lt;code>0O&lt;/code>
+十六进制为 &lt;code>x&lt;/code> 或&lt;code>X&lt;/code>，前缀 &lt;code>0x&lt;/code> 或 &lt;code>0X&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="5-强制类型转换casting">5. 强制类型转换（Casting）
+&lt;/h2>&lt;p>上面有，不说了&lt;/p>
+&lt;h2 id="6-字符串">6. 字符串
+&lt;/h2>&lt;ul>
+&lt;li>&lt;code>&amp;quot;&amp;quot;&lt;/code> 或者 &lt;code>''&lt;/code> 均可，两者相等&lt;/li>
+&lt;li>多行字符串：&lt;code>&amp;quot;&amp;quot;&amp;quot; &amp;quot;&amp;quot;&amp;quot;&lt;/code> 或者 &lt;code>''' '''&lt;/code> 赋给变量就行（不赋给就是多行注释）&lt;/li>
+&lt;li>==&lt;strong>字符串也是数组&lt;/strong>==&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>[!note]
+包括单个字符，它就是==长度为 1 的字符串==
+当有：&lt;code>a = &amp;quot;hello!&amp;quot;&lt;/code> 时，就相当于创建了一个长度为 6 的数组
+因此你可以用 &lt;code>print(a[1])&lt;/code> 打印出 e&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;strong>对字符数组的功能&lt;/strong>
+&lt;ul>
+&lt;li>裁切&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>[!question]
+Q：能 b[-1:-3] 吗？
+A：可以，裁剪长度负值，剪下内容为空（输出一行空）&lt;/p>
+&lt;p>Q：能 b[1:-3] 吗？
+A：可以，输出 ello, Wor（中间内容）&lt;/p>
+&lt;p>Q：能 b[:-3] 吗？
+A：可以，输出 Hello, Wor（从 0 开始）&lt;/p>
+&lt;p>Q：能 b[1:] 吗？
+A：==可以，输出 ello, World!==(注意这个，没有左闭右开的问题)&lt;/p>
+&lt;p>Q：能 b [-99:-3] 吗？（就是能超出吗）
+A：可以，会显示所有 有东西的位置&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>索引&lt;/p>
+&lt;p>==所以索引不能超出范围，切片可以==&lt;/p>
+&lt;ul>
+&lt;li>拼接（级联/串联）
+&lt;ol>
+&lt;li>变量和变量 / 字符间用“+”&lt;/li>
+&lt;li>字符串和字符串之间==可以==直接拼（加空格不影响，显示没有）&lt;/li>
+&lt;li>要在字符串间加空格，可以 &lt;code>a + &amp;quot; &amp;quot; + &amp;quot;hello&amp;quot;&lt;/code> 这样&lt;/li>
+&lt;li>不同形式变量不能直拼接，可以强制类型转换，也可以用 &lt;code>format()&lt;/code> 方法&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>H&lt;/th>
+&lt;th>e&lt;/th>
+&lt;th>l&lt;/th>
+&lt;th>l&lt;/th>
+&lt;th>o&lt;/th>
+&lt;th>,&lt;/th>
+&lt;th>&lt;/th>
+&lt;th>W&lt;/th>
+&lt;th>o&lt;/th>
+&lt;th>r&lt;/th>
+&lt;th>l&lt;/th>
+&lt;th>d&lt;/th>
+&lt;th>!&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>2&lt;/td>
+&lt;td>3&lt;/td>
+&lt;td>4&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>6&lt;/td>
+&lt;td>7&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>9&lt;/td>
+&lt;td>10&lt;/td>
+&lt;td>11&lt;/td>
+&lt;td>12&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>-13&lt;/td>
+&lt;td>-12&lt;/td>
+&lt;td>-11&lt;/td>
+&lt;td>-10&lt;/td>
+&lt;td>-9&lt;/td>
+&lt;td>-8&lt;/td>
+&lt;td>-7&lt;/td>
+&lt;td>-6&lt;/td>
+&lt;td>-5&lt;/td>
+&lt;td>-4&lt;/td>
+&lt;td>-3&lt;/td>
+&lt;td>-2&lt;/td>
+&lt;td>-1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;ul>
+&lt;li>
+&lt;p>字符串的转义
+``
+1. repr()：无视字符串内所有特殊符号，但打印出来会套上&lt;code>''&lt;/code>
+eg: repr (&amp;ldquo;Microsoft\n&amp;rdquo;) &amp;ndash;&amp;gt; &amp;lsquo;Microsoft\n&amp;rsquo;
+2. r&amp;quot;&amp;hellip;&amp;quot;：原始字符串，缺陷是不能在末尾有奇数个 &lt;code>\&lt;/code>，且打印出来末尾的偶数个 &lt;code>\&lt;/code> 会被如实保留
+3. 直接写两个 &lt;code>\&lt;/code> 转义：打印出来正常，缺点是写的多&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>字符串的检查&lt;/p>
+&lt;p>使用==&lt;code>in&lt;/code>==和 ==&lt;code>not in&lt;/code>==关键字&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;ul>
+&lt;li>字符串的格式化
+&lt;ul>
+&lt;li>format ()：具体见 &lt;a class="link" href="https://mountainatic.github.io/posts/format/" >format()&lt;/a>&lt;/li>
+&lt;li>f-string：Python 3.6 起支持，具体见 &lt;a class="link" href="https://mountainatic.github.io/posts/f-string/" >f-string&lt;/a>&lt;/li>
+&lt;li>百分号 %：类似于 C 语言，见 &lt;a class="link" href="https://mountainatic.github.io/posts/%e6%a0%bc%e5%bc%8f%e5%8c%96/" >%格式化&lt;/a>&lt;/li>
+&lt;li>string.Template 模块：$占位，见 &lt;a class="link" href="https://mountainatic.github.io/posts/stringtemplate/" >string.Template&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="7-结构">7. 结构
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>顺序结构：从头顺到尾&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>分支结构：&lt;/strong>&lt;/p>
+&lt;p>==可以有 &lt;code>if 0 &amp;lt; a &amp;lt; 10&lt;/code> 这种写法==&lt;/p>
+&lt;ul>
+&lt;li>if&lt;/li>
+&lt;li>if-else&lt;/li>
+&lt;li>if-elif-else&lt;/li>
+&lt;li>match-case（3.10+特性）：
+&lt;/li>
+&lt;/ul>
+&lt;p>==如果只是对应关系没有&lt;strong>动作&lt;/strong>，其实使用 dict 更好==&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>循环结构：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>while()&lt;/li>
+&lt;li>for：&lt;code>for var in object:&lt;/code>
+建议搭配 &lt;code>range()&lt;/code> 或者 dict/list 使用&lt;/li>
+&lt;li>break 和 continue：和 C 一致&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>异常处理结构：&lt;/strong>&lt;/p>
+&lt;p>这个结构就是为了程序在出现错误时候，防止崩溃而建立的错误处理机制，主要是&lt;strong>try-except&lt;/strong>结构&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>try-except &lt;strong>捕获单个特定异常&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>try-except &lt;strong>捕获多个不同特定异常&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>try-except-as &lt;strong>捕获所有异常&lt;/strong>&lt;/p>
+&lt;p>解释一下，Exception 是大部分错误的父类（也就是大部分错误属于 Exception），error 是用于存储错误的变量&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;em>&lt;strong>可以参考&lt;a class="link" href="https://mountainatic.github.io/posts/%e5%bc%82%e5%b8%b8/" >异常&lt;/a>&lt;/strong>&lt;/em>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="8-运算">8. 运算
+&lt;/h2>&lt;h3 id="数学运算">数学运算
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>运算符&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>+&lt;/td>
+&lt;td>加&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>-&lt;/td>
+&lt;td>减&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>*&lt;/td>
+&lt;td>乘&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>除&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>%&lt;/td>
+&lt;td>取模 mod&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>**&lt;/td>
+&lt;td>幂&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>//&lt;/td>
+&lt;td>向下取整除法（地板除法）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>不强制指定，int 相除为 int，float 相除为 float&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="比较运算">比较运算
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>运算符&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>==&lt;/td>
+&lt;td>是否相等&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>!=&lt;/td>
+&lt;td>是否不相等&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;gt;&lt;/td>
+&lt;td>是否左大于右&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;lt;&lt;/td>
+&lt;td>是否右大于左&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;gt;=&lt;/td>
+&lt;td>是否大于等于&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&amp;lt;=&lt;/td>
+&lt;td>是否小于等于&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="赋值运算">赋值运算
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>运算符&lt;/th>
+&lt;th>=&lt;/th>
+&lt;th>+=&lt;/th>
+&lt;th>-=&lt;/th>
+&lt;th>*=&lt;/th>
+&lt;th>/=&lt;/th>
+&lt;th>%=&lt;/th>
+&lt;th>**=&lt;/th>
+&lt;th>//=&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;/table>
+&lt;h3 id="位运算">位运算
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>运算符&lt;/th>
+&lt;th>&amp;amp;&lt;/th>
+&lt;th>|&lt;/th>
+&lt;th>^&lt;/th>
+&lt;th>~&lt;/th>
+&lt;th>&amp;laquo;&lt;/th>
+&lt;th>&amp;raquo;&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>描述&lt;/td>
+&lt;td>按位与&lt;/td>
+&lt;td>按位或&lt;/td>
+&lt;td>按位异或&lt;/td>
+&lt;td>按位取反&lt;/td>
+&lt;td>左移&lt;/td>
+&lt;td>右移&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="逻辑运算">逻辑运算
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>运算符&lt;/th>
+&lt;th>and&lt;/th>
+&lt;th>or&lt;/th>
+&lt;th>not&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>描述&lt;/td>
+&lt;td>x 为 false，返回 false，否则返回 y&lt;/td>
+&lt;td>x 不是 0，返回 x 值，否则返回 y 值&lt;/td>
+&lt;td>x 为 true，返回 false；x 为 false，返回 true&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="成员运算">成员运算
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>运算符&lt;/th>
+&lt;th>in&lt;/th>
+&lt;th>not in&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>描述&lt;/td>
+&lt;td>序列中有 x 就返回 true&lt;/td>
+&lt;td>序列里没有 x 就返回 false&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="优先级指数按位翻转一元加减号乘除mod地板除法加减法左右移运算and位运算比较运算符等于运算符赋值运算符">优先级：指数&amp;gt;按位翻转/一元加减号&amp;gt;乘除/mod/地板除法&amp;gt;加减法&amp;gt;左右移运算&amp;gt;and&amp;gt;位运算&amp;gt;比较运算符&amp;gt;等于运算符&amp;gt;赋值运算符
+&lt;/h3></description></item><item><title>Seaborn 美化图表库</title><link>https://mountainatic.github.io/posts/seaborn-%E7%BE%8E%E5%8C%96%E5%9B%BE%E8%A1%A8%E5%BA%93/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/seaborn-%E7%BE%8E%E5%8C%96%E5%9B%BE%E8%A1%A8%E5%BA%93/</guid><description>&lt;h2 id="图命令">图命令
+&lt;/h2>&lt;h3 id="散点图">散点图
+&lt;/h3>&lt;h4 id="视觉属性">视觉属性
+&lt;/h4>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>参数&lt;/th>
+&lt;th>视觉效果&lt;/th>
+&lt;th>类型&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>x, y&lt;/td>
+&lt;td>点位置&lt;/td>
+&lt;td>数值/类别&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>hue&lt;/td>
+&lt;td>颜色&lt;/td>
+&lt;td>类别/数值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>style&lt;/td>
+&lt;td>点形状&lt;/td>
+&lt;td>类别&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>size&lt;/td>
+&lt;td>点大小&lt;/td>
+&lt;td>类别/数值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>palettte&lt;/td>
+&lt;td>配色方案（hue 使用）&lt;/td>
+&lt;td>字符串（预设）/字典&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>sizes&lt;/td>
+&lt;td>点范围大小（size 使用）&lt;/td>
+&lt;td>元组&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>markers&lt;/td>
+&lt;td>点形状列表（style 使用）&lt;/td>
+&lt;td>列表&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>alpha&lt;/td>
+&lt;td>透明度（0-1）&lt;/td>
+&lt;td>数值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>edgecolor&lt;/td>
+&lt;td>点边框颜色&lt;/td>
+&lt;td>字符串&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>linewidth&lt;/td>
+&lt;td>点边框宽度&lt;/td>
+&lt;td>数值&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Legend&lt;/td>
+&lt;td>图例&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>形状（style 对应的 markers）&lt;/th>
+&lt;th>Marker 字符&lt;/th>
+&lt;th>效果&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>圆形&lt;/td>
+&lt;td>&lt;code>&amp;quot;o&amp;quot;&lt;/code>&lt;/td>
+&lt;td>🔵&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>方形&lt;/td>
+&lt;td>&lt;code>&amp;quot;s&amp;quot;&lt;/code>&lt;/td>
+&lt;td>🟦&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>三角形（上）&lt;/td>
+&lt;td>&lt;code>&amp;quot;^&amp;quot;&lt;/code>&lt;/td>
+&lt;td>🔺&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>三角形（下）&lt;/td>
+&lt;td>&lt;code>&amp;quot;v&amp;quot;&lt;/code>&lt;/td>
+&lt;td>🔻&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>菱形&lt;/td>
+&lt;td>&lt;code>&amp;quot;D&amp;quot;&lt;/code>&lt;/td>
+&lt;td>🔷&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>八边形&lt;/td>
+&lt;td>&lt;code>&amp;quot;8&amp;quot;&lt;/code>&lt;/td>
+&lt;td>🛑&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>星形&lt;/td>
+&lt;td>&lt;code>&amp;quot;*&amp;quot;&lt;/code>&lt;/td>
+&lt;td>⭐&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>加号&lt;/td>
+&lt;td>&lt;code>&amp;quot;+&amp;quot;&lt;/code>&lt;/td>
+&lt;td>➕&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>x&lt;/td>
+&lt;td>&lt;code>&amp;quot;x&amp;quot;&lt;/code>&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>点&lt;/td>
+&lt;td>&lt;code>&amp;quot;.&amp;quot;&lt;/code>&lt;/td>
+&lt;td>·（很小）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>像素点&lt;/td>
+&lt;td>&lt;code>&amp;quot;,&amp;quot;&lt;/code>&lt;/td>
+&lt;td>，（极小）&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>配色方案&lt;/th>
+&lt;th>描述&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Deep&lt;/td>
+&lt;td>默认&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Pastel&lt;/td>
+&lt;td>柔和&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Muted&lt;/td>
+&lt;td>低饱和&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Bright&lt;/td>
+&lt;td>高饱和&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Dark&lt;/td>
+&lt;td>暗色&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Set 1&lt;/td>
+&lt;td>离散类颜色&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Set 2&lt;/td>
+&lt;td>离散类颜色&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Set 3&lt;/td>
+&lt;td>离散类颜色&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>string.Template</title><link>https://mountainatic.github.io/posts/stringtemplate/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/stringtemplate/</guid><description/></item><item><title>未命名</title><link>https://mountainatic.github.io/posts/%E6%9C%AA%E5%91%BD%E5%90%8D/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/%E6%9C%AA%E5%91%BD%E5%90%8D/</guid><description/></item><item><title>异常</title><link>https://mountainatic.github.io/posts/%E5%BC%82%E5%B8%B8/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/%E5%BC%82%E5%B8%B8/</guid><description>&lt;p>&lt;strong>异常是在程序收到错误时，防止崩溃而做出的一种&amp;quot;应急预案&amp;quot;，会给出程序错误的原因和节点&lt;/strong>&lt;/p>
+&lt;p>基本异常主要包括下面的：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>你可以&lt;strong>自定义异常&lt;/strong>：&lt;/p>
+&lt;p>输出为 &lt;code>捕获到异常： MyError - 写展示的内容&lt;/code>&lt;/p>
+&lt;p>&lt;code>class&lt;/code> 表示了 MyError 继承自 Exception
+&lt;code>raise&lt;/code> 表示手动抛出异常
+&lt;code>as&lt;/code> 捕获了自定义异常&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>你可以在异常里&lt;strong>传参&lt;/strong>：&lt;/p>
+&lt;p>待完善&amp;hellip;&amp;hellip;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>你可以在异常里嵌套 (异常链，便于跟踪)&lt;/p>
+&lt;p>待完善&amp;hellip;&amp;hellip;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>你可以同时创建多个自定义异常&lt;/p>
+&lt;p>待完善&amp;hellip;&amp;hellip;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>你可以结合 try-except 进行异常处理&lt;/p>
+&lt;p>待完善&amp;hellip;&amp;hellip;&lt;/p>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

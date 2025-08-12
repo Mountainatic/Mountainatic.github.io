@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Software on Mountainatic's Blog</title><link>https://mountainatic.github.io/categories/software/</link><description>Recent content in Software on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Sat, 09 Aug 2025 08:00:00 +0900</lastBuildDate><atom:link href="https://mountainatic.github.io/categories/software/index.xml" rel="self" type="application/rss+xml"/><item><title>Example Text</title><link>https://mountainatic.github.io/posts/hello-world/</link><pubDate>Sat, 09 Aug 2025 08:00:00 +0900</pubDate><guid>https://mountainatic.github.io/posts/hello-world/</guid><description>&lt;p>这是第一篇文章，用来测试各项功能是否正常工作。&lt;/p>
+&lt;h2 id="1-latex-数学公式">1. LaTeX 数学公式
+&lt;/h2>&lt;p>行内公式：爱因斯坦的质能方程是 $E=mc^2$。&lt;/p>
+&lt;p>块级公式（支持编号）：
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \left [ -\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r},t) \right ]\Psi(\mathbf{r},t) \tag{薛定谔方程}
+$$&lt;/p>
+&lt;h2 id="2-mermaid-图表">2. Mermaid 图表
+&lt;/h2>&lt;script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js">&lt;/script>
+&lt;script>
+document.addEventListener('DOMContentLoaded', function() {
+mermaid.initialize({
+startOnLoad: true,
+theme: 'default',
+securityLevel: 'loose'
+});
+});
+&lt;/script>&lt;div class="mermaid">
+graph TD;
+A[开始搭建] --> B{遇到 Bug 🐞};
+B --> C[调试环境];
+C --> D[修复模板];
+D --> E[成功! ✨];
+&lt;/div>
+&lt;h2 id="3-代码高亮">3. 代码高亮
+&lt;/h2>&lt;p>下面是一段 Python 代码：&lt;/p>
+&lt;h2 id="4-插入图片">4. 插入图片
+&lt;/h2>&lt;p>首先，把你的图片（例如 &lt;code>my-image.png&lt;/code>）放到项目的 &lt;code>static/img/&lt;/code> 目录下。然后就可以像下面这样引用它：&lt;/p>
+&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example.png"
+loading="lazy"
+alt="这是一张流程图的快照"
+class="responsive-image"
+>
+&lt;figcaption>这是一张流程图的快照&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="5-obsidian-扩展语法">5. Obsidian 扩展语法
+&lt;/h2>&lt;p>==这段文字会被高亮显示==&lt;/p>
+&lt;h3 id="默认状态测试">默认状态测试
+&lt;/h3>&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个标准的、默认展开的笔记。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="折叠状态测试">折叠状态测试
+&lt;/h3>&lt;blockquote>
+&lt;p>[!NOTE+]
+这一个用 &lt;code>+&lt;/code> 指定，也应该是默认展开的。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!NOTE-]
+&lt;strong>这一个用 &lt;code>-&lt;/code> 指定，应该是默认折叠的，你需要点击才能看到我。&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="别名和大小写测试">别名和大小写测试
+&lt;/h3>&lt;blockquote>
+&lt;p>[!Warning] 这是一个警告
+&lt;code>Warning&lt;/code> (W大写) 应该能被正确识别。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!caution] 这还是一个警告
+&lt;code>caution&lt;/code> 是 &lt;code>warning&lt;/code> 的一个别名。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!success] 任务完成
+&lt;code>success&lt;/code> 和 &lt;code>check&lt;/code>, &lt;code>done&lt;/code> 都是成功样式的别名。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUESTION] 常见问题
+&lt;code>QUESTION&lt;/code> 和 &lt;code>faq&lt;/code> 都是问题样式的别名。&lt;/p>
+&lt;/blockquote></description></item></channel></rss>

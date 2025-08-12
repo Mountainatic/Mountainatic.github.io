@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>想法随记 on Mountainatic's Blog</title><link>https://mountainatic.github.io/memos/</link><description>Recent content in 想法随记 on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Sun, 10 Aug 2025 22:35:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/memos/index.xml" rel="self" type="application/rss+xml"/><item><title>代码测试</title><link>https://mountainatic.github.io/memos/2025-08-10-code-test/</link><pubDate>Sun, 10 Aug 2025 22:35:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-code-test/</guid><description>&lt;p>测试一下代码块字体是否正确：&lt;/p>
+&lt;p>使用 &lt;code>console.log('Hello World')&lt;/code> 来输出信息。&lt;/p>
+&lt;p>这应该显示为等宽字体：&lt;code>var x = 42;&lt;/code>&lt;/p></description></item><item><title>技术发现</title><link>https://mountainatic.github.io/memos/2025-08-10-tech-discovery/</link><pubDate>Sun, 10 Aug 2025 19:30:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-tech-discovery/</guid><description>&lt;p>发现了一个很有趣的CSS特性：&lt;code>column-count&lt;/code> 可以很轻松地实现瀑布流布局！&lt;/p>
+&lt;p>配合 &lt;code>break-inside: avoid&lt;/code> 可以防止内容被断开，这样就能创造出类似Pinterest的效果。&lt;/p>
+&lt;p>Hugo的灵活性真的很棒，可以轻松实现各种布局需求。&lt;/p></description></item><item><title>生活感悟</title><link>https://mountainatic.github.io/memos/2025-08-10-life-thoughts/</link><pubDate>Sun, 10 Aug 2025 19:25:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-life-thoughts/</guid><description>&lt;p>今天阳光很好，坐在窗边工作的时候突然想到：&lt;/p>
+&lt;p>编程其实很像生活，都需要不断地调试和优化。每一次的重构都是为了让代码（或生活）变得更好。&lt;/p>
+&lt;p>有时候bug很难找，但解决的那一刻真的很有成就感！&lt;/p></description></item><item><title>读书笔记</title><link>https://mountainatic.github.io/memos/2025-08-10-reading-notes/</link><pubDate>Sun, 10 Aug 2025 19:20:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-reading-notes/</guid><description>&lt;p>今天读了一篇关于&amp;quot;刻意练习&amp;quot;的文章，有几个要点：&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>专注练习&lt;/strong>：不是时间长度，而是练习的质量&lt;/li>
+&lt;li>&lt;strong>即时反馈&lt;/strong>：需要能快速知道自己做得对不对&lt;/li>
+&lt;li>&lt;strong>走出舒适区&lt;/strong>：总是挑战比当前水平稍高一点的任务&lt;/li>
+&lt;/ol>
+&lt;p>这对编程学习也很有启发，应该多做一些稍微超出当前能力的项目。&lt;/p>
+&lt;p>#持续学习 #成长思维&lt;/p></description></item><item><title>美食记录</title><link>https://mountainatic.github.io/memos/2025-08-10-coffee-notes/</link><pubDate>Sun, 10 Aug 2025 19:15:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-coffee-notes/</guid><description>&lt;p>今天尝试了一个新的咖啡冲泡方法：&lt;/p>
+&lt;p>&lt;strong>V60手冲咖啡&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>水温：92°C&lt;/li>
+&lt;li>粉水比：1:15&lt;/li>
+&lt;li>冲泡时间：2分30秒&lt;/li>
+&lt;/ul>
+&lt;p>味道比之前用法压壶做的要清香很多，酸度也更明显。下次可以试试不同的研磨度。&lt;/p>
+&lt;p>☕️ 生活中的小实验总是很有趣&lt;/p></description></item><item><title>第一条想法</title><link>https://mountainatic.github.io/memos/2025-08-10-first-memo/</link><pubDate>Sun, 10 Aug 2025 18:30:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-first-memo/</guid><description>&lt;p>这是第一条静态 Memo！使用 Hugo 的内容管理系统，完全静态化。&lt;/p>
+&lt;p>支持 &lt;strong>Markdown&lt;/strong> 语法，包括：&lt;/p>
+&lt;ul>
+&lt;li>列表&lt;/li>
+&lt;li>&lt;code>代码&lt;/code>&lt;/li>
+&lt;li>==高亮==&lt;/li>
+&lt;/ul>
+&lt;p>#静态化 #Hugo&lt;/p></description></item><item><title>学习笔记</title><link>https://mountainatic.github.io/memos/2025-08-10-study-notes/</link><pubDate>Sun, 10 Aug 2025 16:20:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-study-notes/</guid><description>&lt;p>今天配置了 Hugo 博客的各种功能：&lt;/p>
+&lt;ol>
+&lt;li>Obsidian 语法支持 ✅&lt;/li>
+&lt;li>图片增强功能 ✅&lt;/li>
+&lt;li>Memos 集成 ✅&lt;/li>
+&lt;/ol>
+&lt;p>感觉静态博客的灵活性真的很不错！&lt;/p>
+&lt;p>#学习笔记 #博客&lt;/p></description></item><item><title>随想</title><link>https://mountainatic.github.io/memos/2025-08-10-random-thoughts/</link><pubDate>Sun, 10 Aug 2025 12:15:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-random-thoughts/</guid><description>&lt;p>从 Obsidian 迁移到 Hugo 真的很顺利，特别是语法兼容性做得很好。&lt;/p>
+&lt;p>现在可以：&lt;/p>
+&lt;ul>
+&lt;li>在 Obsidian 中写作&lt;/li>
+&lt;li>直接复制到 Hugo&lt;/li>
+&lt;li>自动部署到 GitHub Pages&lt;/li>
+&lt;/ul>
+&lt;p>这个工作流程很棒！ 🎉&lt;/p></description></item><item><title/><link>https://mountainatic.github.io/memos/2025-08-10-code-snippets/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-code-snippets/</guid><description/></item></channel></rss>

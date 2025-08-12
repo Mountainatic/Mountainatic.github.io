@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>样式 on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/%E6%A0%B7%E5%BC%8F/</link><description>Recent content in 样式 on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 11 Aug 2025 11:45:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/%E6%A0%B7%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><item><title>Callout 样式测试</title><link>https://mountainatic.github.io/posts/callout-style-test/</link><pubDate>Mon, 11 Aug 2025 11:45:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/callout-style-test/</guid><description>&lt;h1 id="callout-样式测试">Callout 样式测试
+&lt;/h1>&lt;style>
+.obsidian-callout {
+margin: 1em 0;
+border-radius: 6px;
+border-left: 4px solid #3b82f6;
+background: rgba(59, 130, 246, 0.05);
+overflow: hidden;
+}
+.obsidian-callout-title {
+display: flex;
+align-items: center;
+padding: 12px 16px;
+background: rgba(59, 130, 246, 0.1);
+font-weight: 600;
+color: #3b82f6;
+gap: 8px;
+}
+.obsidian-callout-content {
+padding: 12px 16px;
+}
+.obsidian-callout-note {
+border-left-color: #3b82f6;
+}
+.obsidian-callout-tip {
+border-left-color: #10b981;
+}
+.obsidian-callout-warning {
+border-left-color: #f59e0b;
+}
+&lt;/style>
+&lt;p>测试基本的 callout：&lt;/p>
+&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个基本的 NOTE callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP]
+这是一个 TIP callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+这是一个 WARNING callout。&lt;/p>
+&lt;/blockquote>
+&lt;p>结束测试。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>调试 on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/%E8%B0%83%E8%AF%95/</link><description>Recent content in 调试 on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 11 Aug 2025 11:40:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/%E8%B0%83%E8%AF%95/index.xml" rel="self" type="application/rss+xml"/><item><title>Callout 调试测试</title><link>https://mountainatic.github.io/posts/callout-debug/</link><pubDate>Mon, 11 Aug 2025 11:40:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/callout-debug/</guid><description>&lt;h1 id="callout-调试测试">Callout 调试测试
+&lt;/h1>&lt;p>测试基本的 callout：&lt;/p>
+&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个基本的 NOTE callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP]
+这是一个 TIP callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+这是一个 WARNING callout。&lt;/p>
+&lt;/blockquote>
+&lt;p>结束测试。&lt;/p></description></item></channel></rss>

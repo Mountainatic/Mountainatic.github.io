@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cards on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/cards/</link><description>Recent content in Cards on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 15 Jan 2024 12:00:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/cards/index.xml" rel="self" type="application/rss+xml"/><item><title>Obsidian 语法测试 - Obsidian 风格</title><link>https://mountainatic.github.io/posts/obsidian-native-style-test/</link><pubDate>Mon, 15 Jan 2024 12:00:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/obsidian-native-style-test/</guid><description>&lt;h2 id="obsidian-callouts类似-obsidian-的卡片风格">Obsidian Callouts（类似 Obsidian 的卡片风格）
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个基础的 Note callout，现在使用类似 Obsidian 的卡片风格设计。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP] 自定义标题的提示
+这是带有自定义标题的 Tip callout，具有独特的颜色和图标。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+这是一个警告类型的 callout，使用橙色主题。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DANGER]
+这是一个危险类型的 callout，使用红色主题表示严重警告。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!ERROR]
+这是一个错误类型的 callout，同样使用红色主题。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!SUCCESS]
+这是一个成功类型的 callout，使用绿色主题表示积极信息。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUESTION]
+这是一个问题类型的 callout，使用紫色主题。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!EXAMPLE]
+这是一个示例类型的 callout，使用青色主题展示示例内容。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!BUG]
+这是一个 Bug 类型的 callout，用于标记已知问题。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUOTE]
+这是一个引用类型的 callout，适合展示引文或重要声明。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="原生-blockquote">原生 Blockquote
+&lt;/h2>&lt;p>这是普通的 blockquote 用于对比：&lt;/p>
+&lt;blockquote>
+&lt;p>这是一个标准的 blockquote&lt;/p>
+&lt;p>它使用 Stack 主题的原生样式&lt;/p>
+&lt;p>与 Obsidian callouts 形成对比&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="obsidian-高亮语法测试">Obsidian 高亮语法测试
+&lt;/h2>&lt;p>这是一段包含 ==高亮文本== 的段落，应该显示为黄色背景。&lt;/p>
+&lt;p>普通文本 ==重要信息== 更多普通文本 ==另一个高亮== 结束。&lt;/p>
+&lt;p>多个高亮在同一行：==第一个== 和 ==第二个== 和 ==第三个==。&lt;/p>
+&lt;p>==整段高亮的文字可能会很长，用来测试换行和样式的表现==。&lt;/p>
+&lt;h2 id="mermaid-图表">Mermaid 图表
+&lt;/h2>&lt;script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js">&lt;/script>
+&lt;script>
+document.addEventListener('DOMContentLoaded', function() {
+mermaid.initialize({
+startOnLoad: true,
+theme: 'default',
+securityLevel: 'loose'
+});
+});
+&lt;/script>&lt;div class="mermaid">
+graph TD
+A[Obsidian 风格] --> B[更好的视觉体验]
+A --> C[卡片式设计]
+B --> D[完美的用户体验]
+C --> D
+E[高亮语法] --> F[重要信息]
+F --> G[视觉突出]
+G --> H[增强可读性]
+&lt;/div>
+&lt;p>现在的 Obsidian callouts 采用了类似 Obsidian 的卡片风格，提供更好的视觉层次和用户体验！&lt;/p>
+&lt;h2 id="图片功能测试">图片功能测试
+&lt;/h2>&lt;h3 id="基础图片自适应大小">基础图片（自适应大小）
+&lt;/h3>&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example.png"
+loading="lazy"
+alt="测试图片"
+class="responsive-image"
+>
+&lt;figcaption>测试图片&lt;/figcaption>
+&lt;/figure>
+&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example_1.png"
+loading="lazy"
+alt="测试图片"
+class="responsive-image"
+>
+&lt;figcaption>测试图片&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="指定宽度的图片">指定宽度的图片
+&lt;/h3>&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example.png"
+loading="lazy"
+alt="指定宽度:100|100"
+class="responsive-image"
+>
+&lt;figcaption>指定宽度:100|100&lt;/figcaption>
+&lt;/figure>
+&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example_1.png"
+loading="lazy"
+alt="指定宽度:400|400"
+class="responsive-image"
+>
+&lt;figcaption>指定宽度:400|400&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="指定宽高的图片">指定宽高的图片
+&lt;/h3>&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example.png"
+loading="lazy"
+alt="指定宽高:100x900|100x300"
+class="responsive-image"
+>
+&lt;figcaption>指定宽高:100x900|100x300&lt;/figcaption>
+&lt;/figure>
+&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example_1.png"
+loading="lazy"
+alt="指定宽高:300x100|300x100"
+class="responsive-image"
+>
+&lt;figcaption>指定宽高:300x100|300x100&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="小尺寸内联图片">小尺寸内联图片
+&lt;/h3>&lt;p>这是一段文字 &lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example.png"
+loading="lazy"
+alt="小图标:100|100"
+class="responsive-image"
+>
+&lt;figcaption>小图标:100|100&lt;/figcaption>
+&lt;/figure>
+&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/Example_1.png"
+loading="lazy"
+alt="小图标:50|50"
+class="responsive-image"
+>
+&lt;figcaption>小图标:50|50&lt;/figcaption>
+&lt;/figure>
+包含小图片的演示。&lt;/p>
+&lt;h3 id="图片功能说明">图片功能说明
+&lt;/h3>&lt;ul>
+&lt;li>✅ &lt;strong>自适应大小&lt;/strong>：图片会根据容器宽度自动调整&lt;/li>
+&lt;li>✅ &lt;strong>响应式设计&lt;/strong>：在不同设备上都有良好的显示效果&lt;/li>
+&lt;li>✅ &lt;strong>点击放大&lt;/strong>：点击图片可以全屏查看&lt;/li>
+&lt;li>✅ &lt;strong>尺寸控制&lt;/strong>：支持 Obsidian 风格的尺寸语法 &lt;code>![alt|width]&lt;/code> 或 &lt;code>![alt|widthxheight]&lt;/code>&lt;/li>
+&lt;li>✅ &lt;strong>图片说明&lt;/strong>：自动显示图片的 alt 文本作为说明&lt;/li>
+&lt;li>✅ &lt;strong>阴影效果&lt;/strong>：图片有精美的阴影和悬浮效果&lt;/li>
+&lt;li>✅ &lt;strong>默认大小&lt;/strong>：400px自适应&lt;/li>
+&lt;/ul></description></item></channel></rss>

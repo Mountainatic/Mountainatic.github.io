@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>测试 on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/%E6%B5%8B%E8%AF%95/</link><description>Recent content in 测试 on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 11 Aug 2025 11:55:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml"/><item><title>极简 Callout 测试</title><link>https://mountainatic.github.io/posts/simple-callout-test/</link><pubDate>Mon, 11 Aug 2025 11:55:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/simple-callout-test/</guid><description>&lt;h1 id="极简-callout-测试">极简 Callout 测试
+&lt;/h1>&lt;script>
+console.log('页面脚本开始执行');
+console.log('检查是否有 obsidian-syntax-new.js:', document.querySelector('script[src*="obsidian-syntax-new.js"]'));
+console.log('检查是否有 style.css:', document.querySelector('link[href*="style"]'));
+// 等待页面加载完成后检查
+setTimeout(() => {
+console.log('3秒后检查 DOM:');
+const blockquotes = document.querySelectorAll('blockquote');
+console.log('找到的 blockquote 数量:', blockquotes.length);
+const callouts = document.querySelectorAll('.obsidian-callout');
+console.log('找到的 .obsidian-callout 数量:', callouts.length);
+if (blockquotes.length > 0 &amp;&amp; callouts.length === 0) {
+console.log('❌ Callout 转换失败 - blockquote 存在但没有被转换');
+} else if (callouts.length > 0) {
+console.log('✅ Callout 转换成功');
+}
+}, 3000);
+&lt;/script>
+&lt;p>测试单个 callout：&lt;/p>
+&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个测试 callout。&lt;/p>
+&lt;/blockquote>
+&lt;p>结束。&lt;/p></description></item><item><title>Callout 样式测试</title><link>https://mountainatic.github.io/posts/callout-style-test/</link><pubDate>Mon, 11 Aug 2025 11:45:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/callout-style-test/</guid><description>&lt;h1 id="callout-样式测试">Callout 样式测试
+&lt;/h1>&lt;style>
+.obsidian-callout {
+margin: 1em 0;
+border-radius: 6px;
+border-left: 4px solid #3b82f6;
+background: rgba(59, 130, 246, 0.05);
+overflow: hidden;
+}
+.obsidian-callout-title {
+display: flex;
+align-items: center;
+padding: 12px 16px;
+background: rgba(59, 130, 246, 0.1);
+font-weight: 600;
+color: #3b82f6;
+gap: 8px;
+}
+.obsidian-callout-content {
+padding: 12px 16px;
+}
+.obsidian-callout-note {
+border-left-color: #3b82f6;
+}
+.obsidian-callout-tip {
+border-left-color: #10b981;
+}
+.obsidian-callout-warning {
+border-left-color: #f59e0b;
+}
+&lt;/style>
+&lt;p>测试基本的 callout：&lt;/p>
+&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个基本的 NOTE callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP]
+这是一个 TIP callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+这是一个 WARNING callout。&lt;/p>
+&lt;/blockquote>
+&lt;p>结束测试。&lt;/p></description></item><item><title>Callout 调试测试</title><link>https://mountainatic.github.io/posts/callout-debug/</link><pubDate>Mon, 11 Aug 2025 11:40:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/callout-debug/</guid><description>&lt;h1 id="callout-调试测试">Callout 调试测试
+&lt;/h1>&lt;p>测试基本的 callout：&lt;/p>
+&lt;blockquote>
+&lt;p>[!NOTE]
+这是一个基本的 NOTE callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP]
+这是一个 TIP callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+这是一个 WARNING callout。&lt;/p>
+&lt;/blockquote>
+&lt;p>结束测试。&lt;/p></description></item><item><title>Obsidian Callout 完整测试 - 修复版</title><link>https://mountainatic.github.io/posts/callout-fold-test/</link><pubDate>Mon, 11 Aug 2025 11:30:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/callout-fold-test/</guid><description>&lt;h1 id="obsidian-callout-完整测试">Obsidian Callout 完整测试
+&lt;/h1>&lt;h2 id="基本语法测试">基本语法测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE]
+基本的 note callout，无自定义标题。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!NOTE] 自定义标题
+带有自定义标题的 note callout。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="折叠语法测试仅识别不实现折叠">折叠语法测试（仅识别，不实现折叠）
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE+]
+默认展开的 note callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING-]
+默认折叠的 warning callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP+] 展开提示
+带自定义标题的展开 tip callout。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DANGER-] 折叠危险
+带自定义标题的折叠 danger callout。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="所有类型测试">所有类型测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!ABSTRACT]
+Abstract callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!SUMMARY] 摘要标题
+Summary 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TLDR] 太长不看
+TLDR 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!INFO]
+Info callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TODO]
+Todo callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TIP]
+Tip callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!HINT] 提示
+Hint 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!IMPORTANT] 重要
+Important 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!SUCCESS]
+Success callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!CHECK] 检查
+Check 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DONE] 完成
+Done 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUESTION]
+Question callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!HELP] 帮助
+Help 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!FAQ] 常见问题
+FAQ 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING]
+Warning callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!CAUTION] 小心
+Caution 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!ATTENTION] 注意
+Attention 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!FAILURE]
+Failure callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!FAIL] 失败
+Fail 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!MISSING] 缺失
+Missing 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!DANGER]
+Danger callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!ERROR] 错误
+Error 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!BUG]
+Bug callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!EXAMPLE]
+Example callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!QUOTE]
+Quote callout 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!CITE] 引用来源
+Cite 别名测试。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="多行内容测试">多行内容测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!NOTE] 多行测试
+这是第一行内容。&lt;/p>
+&lt;p>这是第二行内容，中间有空行。&lt;/p>
+&lt;ul>
+&lt;li>列表项 1&lt;/li>
+&lt;li>列表项 2&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>粗体文本&lt;/strong> 和 &lt;em>斜体文本&lt;/em>。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="大小写测试">大小写测试
+&lt;/h2>&lt;blockquote>
+&lt;p>[!note] 小写
+小写 note 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!WARNING] 大写
+大写 WARNING 测试。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>[!TiP] 混合大小写
+混合大小写 TiP 测试。&lt;/p>
+&lt;/blockquote></description></item><item><title>代码测试</title><link>https://mountainatic.github.io/memos/2025-08-10-code-test/</link><pubDate>Sun, 10 Aug 2025 22:35:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-code-test/</guid><description>&lt;p>测试一下代码块字体是否正确：&lt;/p>
+&lt;p>使用 &lt;code>console.log('Hello World')&lt;/code> 来输出信息。&lt;/p>
+&lt;p>这应该显示为等宽字体：&lt;code>var x = 42;&lt;/code>&lt;/p></description></item><item><title>第一条想法</title><link>https://mountainatic.github.io/memos/2025-08-10-first-memo/</link><pubDate>Sun, 10 Aug 2025 18:30:00 +0800</pubDate><guid>https://mountainatic.github.io/memos/2025-08-10-first-memo/</guid><description>&lt;p>这是第一条静态 Memo！使用 Hugo 的内容管理系统，完全静态化。&lt;/p>
+&lt;p>支持 &lt;strong>Markdown&lt;/strong> 语法，包括：&lt;/p>
+&lt;ul>
+&lt;li>列表&lt;/li>
+&lt;li>&lt;code>代码&lt;/code>&lt;/li>
+&lt;li>==高亮==&lt;/li>
+&lt;/ul>
+&lt;p>#静态化 #Hugo&lt;/p></description></item></channel></rss>
