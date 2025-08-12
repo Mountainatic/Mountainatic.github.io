@@ -278,11 +278,7 @@ eg. &lt;code>print(&amp;quot;name is {a}, from {b}&amp;quot;.format(a=&amp;quot;
 &lt;p>&lt;strong>列表环境&lt;/strong>&lt;/p>
 &lt;p>==可以嵌套使用==&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title>letter</title><link>https://mountainatic.github.io/posts/letter/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/letter/</guid><description>&lt;p>学弟/学妹
-你好！
-欢迎你从高中升入大学！
-每一届都写这个信，可是我报道时候没有 ：（ 不知道写点啥按点写吧&lt;/p>
-&lt;p>二餐的麻辣香锅好吃（虽然我只能吃三鲜的）五餐的天府小炒好吃、三餐今日升烤盘饭好吃&lt;/p></description></item><item><title>matplotlib</title><link>https://mountainatic.github.io/posts/matplotlib/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/matplotlib/</guid><description>&lt;ul>
+&lt;/ul></description></item><item><title>matplotlib</title><link>https://mountainatic.github.io/posts/matplotlib/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/matplotlib/</guid><description>&lt;ul>
 &lt;li>&lt;strong>创建画布&lt;/strong>
 &lt;ul>
 &lt;li>&lt;code>fig, ax = plt.subplots()&lt;/code>&lt;/li>
