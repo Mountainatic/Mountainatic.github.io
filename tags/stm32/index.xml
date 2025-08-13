@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>STM32 on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/stm32/</link><description>Recent content in STM32 on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Mon, 11 Aug 2025 22:54:29 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/stm32/index.xml" rel="self" type="application/rss+xml"/><item><title>Cortex M4</title><link>https://mountainatic.github.io/posts/cortex-m4/</link><pubDate>Mon, 11 Aug 2025 22:54:29 +0800</pubDate><guid>https://mountainatic.github.io/posts/cortex-m4/</guid><description>&lt;p>![Pasted image 20250604230344.png](/images/Pasted image 20250604230344.png)
-![Pasted image 20250604230353.png](/images/Pasted image 20250604230353.png)&lt;/p>
-&lt;p>![Pasted image 20250604221847.png](/images/Pasted image 20250604221847.png)&lt;/p>
-&lt;h3 id="包含-processor-core--fpu--nvic--mpu--bus-martrix--flash-patch--dwt--debug-access-port--etm--swv-这几个逻辑结构用寄存器操控">包含 Processor Core + FPU | NVIC | MPU | Bus Martrix | Flash Patch &amp;amp; DWT | Debug Access Port | ETM + SWV 这几个逻辑结构，用寄存器操控
-&lt;/h3>&lt;h2 id="1-processor-core--fpu">1. Processor Core + FPU
-&lt;/h2>&lt;p>![Pasted image 20250604230023.png](/images/Pasted image 20250604230023.png)
-&lt;em>摘自《ARM Cortex-M3 与 Cortex-M4 权威指南第三版》&lt;/em>&lt;/p>
-&lt;p>STMG4 -&amp;gt; Cortex-M4 处理器 -&amp;gt; Cortex-M4 内核+核心外设 -&amp;gt; Cortex-M4 内核 -&amp;gt; Cortex-M4 三级流水线 -&amp;gt; armv7-m 架构&lt;/p></description></item></channel></rss>
