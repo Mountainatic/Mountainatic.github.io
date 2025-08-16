@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PlatformIO on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/platformio/</link><description>Recent content in PlatformIO on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Sat, 16 Aug 2025 20:30:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/platformio/index.xml" rel="self" type="application/rss+xml"/><item><title>基于 VSCode + PlatformIO IDE + STM32CubeMX 的现代 STM32 工具</title><link>https://mountainatic.github.io/posts/stm32-modern-tools/</link><pubDate>Sat, 16 Aug 2025 20:30:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/stm32-modern-tools/</guid><description>&lt;h1 id="建议的工具">建议的工具
+&lt;/h1>&lt;ul>
+&lt;li>VSCode&lt;/li>
+&lt;li>VSCode 插件 Platform IDE&lt;/li>
+&lt;li>良好的科学上网环境&lt;/li>
+&lt;li>STM32CubeMX&lt;/li>
+&lt;li>基于 STM32G474RE 的 Nucleo G474RE 开发板&lt;/li>
+&lt;li>有 8051 如 STC89C52RC 的一点基础&lt;/li>
+&lt;/ul>
+&lt;h1 id="安装">安装
+&lt;/h1>&lt;p>首先在 VSCode 内装载 Platform IDE 插件，注意科学上网环境，会下载 PlatformIO Core 以及相关组件在 &lt;code>C:\Users\&amp;quot;你的用户名字&amp;quot;&lt;/code>，即个人文件夹下，等待完成后能够显示出如下 PIO Home，若未显示，请点击左侧 &lt;code>Quick Access -&amp;gt; PIO Home -&amp;gt; Open&lt;/code> 以打开，该页面基于本地服务，即 &lt;code>localhost&lt;/code> 下的端口服务，所以请务必检查可能的冲突，如来自 WSL 或 Hyper-V 等服务的自动保留端口与 PIO 的服务端口（好像是 3030）是否有冲突，具体可通过命令查询，不在此赘述，可搜索相关案例以及参考：&lt;/p>
+&lt;p>&lt;a class="link" href="https://blog.51cto.com/u_15259603/5552419" target="_blank" rel="noopener"
+>【问题解决】我遇到并解决PlatformIO无法使用的各种问题汇总及解决方法，简单粗暴使用的网络问题解决方法&amp;hellip;_51CTO博客_platformio 调试&lt;/a>&lt;/p>
+&lt;p>同时官方文档也能提供帮助：&lt;a class="link" href="https://docs.platformio.org/en/latest/" target="_blank" rel="noopener"
+>Your Gateway to Embedded Software Development Excellence — PlatformIO latest documentation&lt;/a>&lt;/p>
+&lt;p>访问官方指南可得到更为详细的介绍：&lt;a class="link" href="https://docs.platformio.org/en/latest/integration/ide/vscode.html#ide-vscode" target="_blank" rel="noopener"
+>PlatformIO IDE for VSCode — PlatformIO 最新文档&lt;/a>&lt;/p>
+&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/stm32-modern-tools/Installed.png"
+loading="lazy"
+alt="安装完成界面"
+class="responsive-image"
+>
+&lt;figcaption>安装完成界面&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h1 id="项目构建">项目构建
+&lt;/h1>&lt;p>项目构建有两种方式，其一为直接使用 PIO 自带进行 &lt;code>New Project&lt;/code>，该方式无需设定时钟树和外板载外设，均由官方预置，对相当一部分板子做了适配；其二为 STM32CubeMX 选择 CMake/Makefile 编译来创建通用工程，由命令行导入，也需要对 PIO 方面进行配置。优点是可以自由配置时钟和外设，但是需要对 PIO 进行修改。对于前期而言，可直接采用 PIO 预置，两种都会说到。&lt;/p>
+&lt;h2 id="pio-新建项目">PIO 新建项目
+&lt;/h2>&lt;p>点击 &lt;code>New Project&lt;/code> 选择对应板型号，创建即可，该过程首次会下载数据，注意网络环境&lt;/p>
+&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/stm32-modern-tools/CreatingPIOProject.png"
+loading="lazy"
+alt="创建 PIO 项目"
+class="responsive-image"
+>
+&lt;figcaption>创建 PIO 项目&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>其中 &lt;code>Framework&lt;/code> 一项需选择 STM32Cube 以使用板载 ST-Link 进行连接，默认位置 &lt;code>default location&lt;/code> 在默认的 &lt;code>Documents/PlatformIO&lt;/code> 即&amp;quot;文档&amp;quot;文件夹下&lt;/p>
+&lt;p>默认文件夹架构如下&lt;/p>
+&lt;p>其中 &lt;code>.pio&lt;/code> 与 &lt;code>.vscode&lt;/code> 分别放置 PIO 与 VSCode 相关驱动文件，&lt;code>include&lt;/code>、&lt;code>lib&lt;/code>、&lt;code>src&lt;/code>、&lt;code>test&lt;/code> 分别存放自定义头文件、项目资源/驱动/库、项目代码文件、自动测试脚本&lt;/p>
+&lt;p>&lt;code>.pio&lt;/code> 由PlatformIO自动生成和管理，它存放着编译过程中产生的所有中间文件（&lt;code>.o&lt;/code> 文件）、最终生成的固件（&lt;code>firmware.elf&lt;/code>, &lt;code>firmware.bin&lt;/code>），以及为本项目下载的工具链和框架源码&lt;/p>
+&lt;p>&lt;code>.vscode&lt;/code> 配置了 PIO 与 VSCode 的集成部分，包括调试与 IntelliSense 的集成等，后者为代码补全显示引用等诸多现代 IDE 功能的必要组成&lt;/p>
+&lt;p>&lt;code>test&lt;/code> 文件夹用于存放自动化脚本，假设您写了一个复杂的函数，用来解析GPS模块发来的一长串NMEA数据。您怎么能确定这个函数在各种正常和异常情况下（比如数据丢了几个字节）都能正确工作？传统的方法是把代码烧到板子里，接上GPS模块，然后守着串口看打印信息，费时费力。而单元测试允许您&lt;strong>在不运行整个程序的情况下，单独、自动地测试这一个函数&lt;/strong>。在&lt;code>test&lt;/code>文件夹下，为您想测试的每个功能模块创建一个子文件夹，比如 &lt;code>test/test_gps_parser&lt;/code>。在这个子文件夹里，创建一个C/C++文件（如&lt;code>test_main.cpp&lt;/code>），编写专门的测试代码。您只需要在PlatformIO终端里运行一个命令：&lt;/p>
+&lt;p>PlatformIO会自动查找 &lt;code>test&lt;/code> 目录下的所有测试，将&lt;strong>每一个测试都独立编译成一个可执行程序&lt;/strong>，然后：&lt;strong>上传到您的STM32开发板上运行&lt;/strong>，并将测试结果（PASS / FAIL）通过串口返回到电脑上。这被称为&lt;strong>片上测试 (On-Target Test)&lt;/strong>，可以验证与硬件交互的代码。或者，如果您的代码不涉及硬件（比如纯算法），它甚至可以直接在您的&lt;strong>电脑上编译并运行测试&lt;/strong>，速度极快。这被称为&lt;strong>原生测试 (Native Test)&lt;/strong>。&lt;/p>
+&lt;h3 id="platformioini-结构">platformio.ini 结构
+&lt;/h3>&lt;h4 id="基本构成元素">基本构成元素
+&lt;/h4>&lt;p>&lt;strong>&lt;code>[section]&lt;/code>&lt;/strong>: 方括号定义一个配置区块。最重要的区块是 &lt;code>[platformio]&lt;/code>（全局配置）和 &lt;code>[env:NAME]&lt;/code>（特定环境配置）。&lt;/p>
+&lt;p>&lt;strong>&lt;code>key = value&lt;/code>&lt;/strong>: 每一行是一个配置项，&lt;code>=&lt;/code> 左边是键（选项名称），右边是值。&lt;/p>
+&lt;p>&lt;strong>&lt;code>;&lt;/code>&lt;/strong>: 分号开头表示注释。&lt;/p>
+&lt;p>&lt;strong>继承与引用&lt;/strong>: PlatformIO支持在一个环境中引用另一个环境的配置，以减少重复。&lt;/p>
+&lt;h4 id="platformio-全局配置区块">&lt;code>[platformio]&lt;/code> 全局配置区块
+&lt;/h4>&lt;p>这个区块下的配置项会影响PlatformIO工具本身的行为，而不是某个特定的编译环境。&lt;/p>
+&lt;p>&lt;code>default_envs = nucleo_g474re&lt;/code> &lt;strong>功能&lt;/strong>: &lt;strong>(极其有用)&lt;/strong> 定义默认环境。当您的项目有多个&lt;code>[env:...]&lt;/code>区块时，如果您只点击VSCode状态栏的通用&amp;quot;Build&amp;quot;或&amp;quot;Upload&amp;quot;按钮，PlatformIO将只操作这里指定的环境。这完美地解决了我们之前遇到的&amp;quot;16个项目全部失败&amp;quot;的问题。&lt;/p>
+&lt;p>&lt;code>src_dir = src&lt;/code> &lt;strong>功能&lt;/strong>: 指定源代码目录的位置，默认为 &lt;code>src&lt;/code>。&lt;/p>
+&lt;p>&lt;code>include_dir = include&lt;/code> &lt;strong>功能&lt;/strong>: 指定项目级头文件目录的位置，默认为&lt;code>include&lt;/code>。&lt;/p>
+&lt;p>&lt;code>lib_dir = lib&lt;/code> &lt;strong>功能&lt;/strong>: 指定私有库目录的位置，默认为&lt;code>lib&lt;/code>。&lt;/p>
+&lt;h4 id="envname-环境配置区块">&lt;code>[env:NAME]&lt;/code> 环境配置区块
+&lt;/h4>&lt;p>这是我们99%的工作所在。&lt;code>NAME&lt;/code>是您给这个环境起的名字，比如我们用的&lt;code>nucleo_g474re&lt;/code>。&lt;/p>
+&lt;h5 id="1-平台选项-platform-options-必需">1. 平台选项 (Platform Options) [必需]
+&lt;/h5>&lt;p>这是定义项目&amp;quot;身份&amp;quot;的基础。&lt;/p>
+&lt;p>&lt;code>platform = ststm32&lt;/code> &lt;strong>功能&lt;/strong>: 指定MCU的平台/家族。例如 &lt;code>ststm32&lt;/code>, &lt;code>espressif32&lt;/code>, &lt;code>atmelavr&lt;/code>等。&lt;/p>
+&lt;p>&lt;code>board = nucleo_g474re&lt;/code> &lt;strong>功能&lt;/strong>: 指定具体的开发板ID。PlatformIO会根据这个ID自动配置MCU型号、时钟频率、内存大小、上传工具、调试工具等一系列参数。您可以在 &lt;a class="link" href="https://platformio.org/boards" target="_blank" rel="noopener"
+>PlatformIO Boards&lt;/a> 找到所有支持的ID。&lt;/p>
+&lt;p>&lt;code>framework = stm32cube&lt;/code> &lt;strong>功能&lt;/strong>: 指定使用的软件框架。例如 &lt;code>stm32cube&lt;/code>, &lt;code>arduino&lt;/code>, &lt;code>mbed&lt;/code>。&lt;/p>
+&lt;h5 id="2-编译选项-build-options-常用">2. 编译选项 (Build Options) [常用]
+&lt;/h5>&lt;p>控制代码如何被编译。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>build_flags =&lt;/code> &lt;strong>功能&lt;/strong>: &lt;strong>(极其强大)&lt;/strong> 向编译器（GCC）传递额外的指令。可以写多行，每行一个指令。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>-O2&lt;/code>: 设置优化等级为2级（默认值）。&lt;code>-Os&lt;/code>为尺寸优化，&lt;code>-O0&lt;/code>为不优化（方便调试）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>-D MACRO_NAME&lt;/code>: 定义一个宏，等效于在代码里写&lt;code>#define MACRO_NAME&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>-D MACRO_NAME=VALUE&lt;/code>: 定义一个带值的宏。例如 &lt;code>-D BAUD_RATE=9600&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>-I path/to/headers&lt;/code>: 添加一个额外的头文件搜索路径。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>-Wl,-Map,output.map&lt;/code>: 让链接器生成map文件，用于高级调试。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>src_filter = +&amp;lt;*&amp;gt; -&amp;lt;extra/&amp;gt;&lt;/code> &lt;strong>功能&lt;/strong>: 源代码过滤器。可以精确控制哪些文件参与编译。&lt;code>+&amp;lt; &amp;gt;&lt;/code>表示包含，&lt;code>-&amp;lt; &amp;gt;&lt;/code>表示排除。例如 &lt;code>+&amp;lt;*&amp;gt; -&amp;lt;test/&amp;gt; -&amp;lt;examples/&amp;gt;&lt;/code> 表示编译所有文件，但排除&lt;code>test&lt;/code>和&lt;code>examples&lt;/code>目录下的文件。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>extra_scripts = pre:my_script.py&lt;/code> &lt;strong>功能&lt;/strong>: (高级) 在编译前(&lt;code>pre:&lt;/code>)或编译后(&lt;code>post:&lt;/code>)执行一个Python脚本，用于实现高度自动化，比如在编译后自动生成固件版本号。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="3-库选项-library-options-核心功能">3. 库选项 (Library Options) [核心功能]
+&lt;/h5>&lt;p>管理项目依赖的库。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>lib_deps =&lt;/code> &lt;strong>功能&lt;/strong>: &lt;strong>(PlatformIO的灵魂)&lt;/strong> 指定项目依赖的库。PlatformIO会自动下载、安装并链接它们。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>adafruit/DHT sensor library&lt;/code>: 根据库的 &lt;code>所有者/名称&lt;/code> 从官方库中心查找。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>DHT sensor library@1.3.4&lt;/code>: 指定库的版本号。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>https://github.com/user/repo.git&lt;/code>: 直接从一个Git仓库依赖。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>file://path/to/local/library&lt;/code>: 依赖本地的一个库文件夹。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>lib_ignore = SomeLib, AnotherLib&lt;/code> &lt;strong>功能&lt;/strong>: 明确告诉PlatformIO忽略某些库，以解决可能发生的库冲突。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="4-上传选项-upload-options">4. 上传选项 (Upload Options)
+&lt;/h5>&lt;ul>
+&lt;li>
+&lt;p>&lt;code>upload_protocol = stlink&lt;/code> &lt;strong>功能&lt;/strong>: 指定烧录固件的协议/工具。对于NUCLEO板，&lt;code>stlink&lt;/code>是默认值，通常可以省略。其他可选值如 &lt;code>jlink&lt;/code>, &lt;code>cmsis-dap&lt;/code>, &lt;code>mbed&lt;/code>等。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>upload_port = COM3&lt;/code> &lt;strong>功能&lt;/strong>: 在使用串口烧录时（比如Arduino Uno），指定烧录端口。对于ST-LINK则不需要。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>upload_flags =&lt;/code> &lt;strong>功能&lt;/strong>: 向烧录工具传递额外的命令行参数，用于非常特殊的烧录场景。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="5-串口监视器选项-serial-monitor-options">5. 串口监视器选项 (Serial Monitor Options)
+&lt;/h5>&lt;ul>
+&lt;li>
+&lt;p>&lt;code>monitor_speed = 115200&lt;/code> &lt;strong>功能&lt;/strong>: &lt;strong>(即将用到)&lt;/strong> 设置串口监视器的波特率。&lt;strong>必须&lt;/strong>与您代码中UART初始化的波特率严格一致。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>monitor_port = COM3&lt;/code> &lt;strong>功能&lt;/strong>: 手动指定要监听的串口。默认情况下PlatformIO会自动检测。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>monitor_filters = colorize, log2file&lt;/code> &lt;strong>功能&lt;/strong>: (高级) 监视器过滤器。可以在数据被打印出来之前对其进行处理。&lt;code>colorize&lt;/code>可以给输出加上颜色，&lt;code>log2file&lt;/code>可以把串口输出自动保存到文件中。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="6-调试选项-debug-options">6. 调试选项 (Debug Options)
+&lt;/h5>&lt;ul>
+&lt;li>
+&lt;p>&lt;code>debug_tool = stlink&lt;/code> &lt;strong>功能&lt;/strong>: 指定进行硬件调试的工具。NUCLEO板默认为&lt;code>stlink&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>debug_init_break = tbreak main&lt;/code> &lt;strong>功能&lt;/strong>: 设置调试开始时的第一个断点。&lt;code>tbreak main&lt;/code>表示在&lt;code>main&lt;/code>函数入口处设置一个&lt;strong>临时&lt;/strong>断点，程序会在这里停下。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>debug_speed = 1800&lt;/code> &lt;strong>功能&lt;/strong>: 设置调试器与目标芯片的通信速度（kHz）。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="由-stm32cubemx-创建并导入">由 STM32CubeMX 创建并导入
+&lt;/h2>&lt;h1 id="编译与烧录">编译与烧录
+&lt;/h1>&lt;p>&lt;figure class="image-container">
+&lt;img src="https://mountainatic.github.io/img/stm32-modern-tools/Button.png"
+loading="lazy"
+alt="PIO 界面按钮"
+class="responsive-image"
+>
+&lt;figcaption>PIO 界面按钮&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>依次为 PIO Home 主页面、编译、烧录、清除文件、测试、PIO CLI、项目环境&lt;/p>
+&lt;p>调试请按 &lt;code>F5&lt;/code>&lt;/p></description></item></channel></rss>

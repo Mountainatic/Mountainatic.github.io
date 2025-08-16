@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GPIO on Mountainatic's Blog</title><link>https://mountainatic.github.io/tags/gpio/</link><description>Recent content in GPIO on Mountainatic's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>Mountainatic</copyright><lastBuildDate>Sat, 16 Aug 2025 21:00:00 +0800</lastBuildDate><atom:link href="https://mountainatic.github.io/tags/gpio/index.xml" rel="self" type="application/rss+xml"/><item><title>STM32 HAL 库基础与点灯实战</title><link>https://mountainatic.github.io/posts/stm32-hal-basics/</link><pubDate>Sat, 16 Aug 2025 21:00:00 +0800</pubDate><guid>https://mountainatic.github.io/posts/stm32-hal-basics/</guid><description>&lt;h1 id="点灯之前">点灯之前……
+&lt;/h1>&lt;p>STM32 相比与 8051 系列太复杂了，不是我说，在 STC89C52RC 中，你可以清楚地看到每个寄存器是干啥的，直接操控寄存器来完成每个控制动作，同时执行逻辑也很清晰，一条由 RAM 到 ALU 的流水线，但是到了 STM32 来说，两者同样是「改良型哈弗架构」，后者却是 32 位的微控制器，在单寄存器能实现 32 位数据的同时，即使是最低端的 F1 系列仍然具有数以百计的寄存器，高端型号寄存器数目甚至突破千位，寄存器的记忆本身就是一个麻烦的地方，而正是基于寄存器设计的官方库文件，标准库，也在数年前被弃用。在官方指导下，人们正式转向了经过封装抽象过的 HAL 库，HAL 本身即为 &amp;ldquo;Hardware Abstraction Layer（硬件抽象层）&amp;rdquo; 的缩写，通过将对寄存器的操作封装位函数，实现了以调用函数为基础的程序编写，此时，对于寄存器的高阶需求则全面转向与 HAL 相配套的 LL 库。&lt;/p>
+&lt;blockquote>
+&lt;p>[!Note] 改良哈弗架构是什么？
+众所周知，在图灵机理想模型具象化之后，冯依诺曼机作为一种工程架构被提出，即计算机需要由运算器、控制器、存储器、输入设备、输出设备五个部件组成。&lt;/p>
+&lt;p>由这种架构思维，发展出了多种实际架构，如程序指令和数据存放在同一个存储空间中，并且共用同一条总线（连接CPU和存储器的通道）的&lt;strong>冯依诺曼架构&lt;/strong>，不难想到其灵活性很好高，程序可以像数据一样被修改，但是缺点也很明显，因为共用一条总线，CPU无法同时读取指令和读写数据，会产生所谓的“冯·诺依曼瓶颈”，限制了性能。&lt;/p>
+&lt;p>程序指令和数据分别存放在两个独立的存储空间中，并且各自拥有独立的总线，拥有两类不同的指令，此时CPU可以同时读取指令和读写数据，速度非常快，突破了冯·诺依曼瓶颈。缺点也很明显，结构相对复杂，并且由于指令和数据严格分离，程序在运行时不能轻易地修改自身。&lt;/p>
+&lt;p>于是想要兼具两者特点的「改良型哈弗架构」出现了，&lt;strong>在CPU内核层面&lt;/strong>，它是哈佛架构：CPU内核拥有两条独立的总线：一条叫I-Bus (Instruction Bus)，专门用于去获取程序指令；另一条叫D-Bus (Data Bus)，专门用于读写数据。而&lt;strong>在内存管理层面&lt;/strong>，它又是统一的冯·诺依曼架构：虽然有两条总线，但这两条总线最终都连接到了一个统一的、4GB的地址空间上。无论是存放程序的Flash，还是存放数据的SRAM，都被映射到了这个统一的地址空间里。CPU在一个时钟周期内，可以&lt;strong>一边执行上一条指令，一边预取下一条指令&lt;/strong>，极大地提高了流水线效率和执行速度。&lt;/p>
+&lt;/blockquote>
+&lt;p>HAL 库的设计自有其逻辑，核心主要是「对象」，将外设视为多个独立的对象，通过对象组织寄存器，由于 C 中并没有对象的概念，因此 ST 大量使用了结构体和函数对该外设对象的进行封装，称作&lt;strong>句柄（Handle）&lt;/strong>&lt;/p>
+&lt;p>句柄的命名是由固定格式的，即 &lt;code>name_HandleTypeDef&lt;/code>，如 &lt;code>UART_HandleTypeDef&lt;/code> 即是串口的句柄、&lt;code>I2C_HandleTypeDef&lt;/code> 就是 I&lt;sup>2&lt;/sup>C的句柄，其既包含了该外设的所有配置参数、也记录了其实时状态。&lt;/p>
+&lt;p>HAL 库的外设初始化总是分为四步：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>使能时钟&lt;/strong>：STM32 在初始情况下总是默认关闭所有外设，为此需要配置其属于开启状态
+&lt;ul>
+&lt;li>外设本身运作需要时钟：此时即需要调用 &lt;code>__HAL_RCC_name_CLK_ENABLE()&lt;/code>，&lt;code>name&lt;/code> 为外设名称，如 &lt;code>LPUART1&lt;/code>&lt;/li>
+&lt;li>外设用到的 GPIO 引脚需要时钟：此时需要调用 &lt;code>__HAL_RCC_GPIOnumber_CLK_ENABLE()&lt;/code>，&lt;code>number&lt;/code> 为 GPIO 引脚编号，如 &lt;code>GPIOA&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>配置 GPIO 输出模式&lt;/strong>：为了配置 GPIO 口，我们需要定义并一张 &lt;code>GPIO_InitTypeDef&lt;/code> 类型的表单，当定义结束后，通过 &lt;code>HAL_GPIO_Init()&lt;/code> 函数来提交申请。 对于该结构体如何定义，在代码里保持按下 &lt;code>Ctrl&lt;/code>并使用鼠标点击即可得到其定义
+&lt;ul>
+&lt;li>&lt;code>uint32_t Pin&lt;/code>：当前端口内（如前所述 &lt;code>GPIOA&lt;/code>）的&lt;strong>针脚编号&lt;/strong>，可以是 &lt;code>GPIO_PIN_number&lt;/code>，&lt;code>number&lt;/code> 取引脚编号，也可以是 &lt;code>GPIO_PIN_ALL&lt;/code> 来指该端口的所有针脚，也可以使用“按位或 &lt;code>|&lt;/code>”来指定多个引脚&lt;/li>
+&lt;li>&lt;code>uint32_t Mode&lt;/code>：&lt;strong>输出/输出模式&lt;/strong>，主要有 &lt;code>GPIO_MODE_INPUT&lt;/code> 输入模式、&lt;code>GPIO_MODE_OUTPUT_PP&lt;/code> 推挽输出模式、&lt;code>GPIO_MODE_OUTPUT_OD&lt;/code> 开漏输出模式、&lt;code>GPIO_MODE_AF_PP&lt;/code> / &lt;code>GPIO_MODE_AF_OD&lt;/code> 复用功能模式、&lt;code>GPIO_MODE_ANALOG&lt;/code> 模拟模式&lt;/li>
+&lt;li>&lt;code>uint32_t Pull&lt;/code>：&lt;strong>默认倾向&lt;/strong>，&lt;code>GPIO_NOPULL&lt;/code> 针脚浮空，无上拉或下拉、&lt;code>GPIO_PULLUP&lt;/code> 上拉、&lt;code>GPIO_PULLDOWN&lt;/code> 下拉&lt;/li>
+&lt;li>&lt;code>uint32_t Speed&lt;/code>：&lt;strong>反应速度&lt;/strong>，即电平从高到低或从低到高变化的快慢，由“压摆率”实现。参数为 &lt;code>GPIO_SPEED_FREQ_speed&lt;/code> ，其中 &lt;code>speed&lt;/code> 可选 &lt;code>LOW&lt;/code>、&lt;code>MEDIUM&lt;/code>、&lt;code>HIGH&lt;/code>、&lt;code>VERY_HIGH&lt;/code>，速度越高功耗越大，EMI 更强，会产生更尖锐的信号边缘，一般选满足需求的最低速度&lt;/li>
+&lt;li>&lt;code>uint32_t Alternate&lt;/code>：&lt;strong>复用指定&lt;/strong>，当 &lt;code>Mode&lt;/code> 为复用模式时，该参数有效，其被用来指定该引脚要被复用为何种功能，功能的 &lt;code>AF&lt;/code> 编号由 Datasheet 给出，也可使用 HAL 库中的别名&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>配置外设本身&lt;/strong>：为了配置外设本身，我们需要进行以下步骤
+&lt;ul>
+&lt;li>&lt;strong>创建外设句柄&lt;/strong>：使用 &lt;strong>device_HandTypeDef name&lt;/strong> 创建一个命名为 &lt;strong>name&lt;/strong> 关于外设 &lt;strong>device&lt;/strong> 的句柄&lt;/li>
+&lt;li>&lt;strong>填写参数&lt;/strong>：根据 HAL 定制的要求，将句柄所需参数填写入结构体表单，即定义结构体中的变量值&lt;/li>
+&lt;li>&lt;strong>初始化外设&lt;/strong>：调用 &lt;code>HAL_device_Init&lt;/code> 函数，传入所需变量，如 &lt;code>HAL_GPIO_Init( GPIOA, &amp;amp;name)&lt;/code> 传入 GPIO 端口编号与结构体表单地址&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>（可选）配置中断&lt;/strong>：若要实现非阻塞式数据处理，则可将外设绑定至中断进行，一般有两步：
+&lt;ul>
+&lt;li>先&lt;strong>设定中断优先级&lt;/strong>：&lt;code>HAL_NVIC_SetPriority()&lt;/code>，三个参数
+&lt;ul>
+&lt;li>&lt;code>IRQn&lt;/code>：外设中断编号&lt;/li>
+&lt;li>&lt;code>PreemptPriority&lt;/code>：抢占优先级，在 G4 系列中，值为 0-15，数字越小优先级越高，级别高低直接决定了目前执行的中断是否能被突发的另一个中断打断，高能打断低&lt;/li>
+&lt;li>&lt;code>SubPriority&lt;/code>：响应优先级 / 亚优先级，当两个中断优先级一致且需要一个打断另一个时候，又或者是两个中断同时发生时候，依靠该值比较谁先发生，值越小优先级越高&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>后&lt;strong>使能中断&lt;/strong>：&lt;code>HAL_NVIC_EnableIRQ()&lt;/code>，参数为 &lt;code>IRQn_Type IRQn&lt;/code> 其中 &lt;code>IQRn&lt;/code> 是枚举类型，是每个外设唯一的中断编号，在头文件中预置，如 &lt;code>USART1_IQRn&lt;/code> 为串口 1 中断、&lt;code>TIM2_IQRn&lt;/code> 为定时器 2 中断&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>使用函数操作外设&lt;/strong>：外设操作求公约数的的话……大概就是以下几个
+&lt;ul>
+&lt;li>启动/发送/接收（&lt;strong>轮询模式&lt;/strong>，会阻塞）：一般以 &lt;code>HAL_device_...()&lt;/code> 命名，如 &lt;code>HAL_UART_Transmit()&lt;/code>&lt;/li>
+&lt;li>启动/发送/接收（&lt;strong>中断&lt;/strong>模式，不阻塞）：一般以 &lt;code>HAL_device_..._IT()&lt;/code> 命名，如 &lt;code>HAL_UART_Receive_IT()&lt;/code>&lt;/li>
+&lt;li>启动/发送/接收（&lt;strong>DMA&lt;/strong>模式，不阻塞）：一般以 &lt;code>HAL_device_..._DMA()&lt;/code> 命名，&lt;code>HAL_I2C_Master_Transmit_DMA()&lt;/code>&lt;/li>
+&lt;li>中断处理函数：&lt;code>device_IRQHandler()&lt;/code> ，例如 &lt;code>LPUART1_IRQHandler()&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>[!Note]
+到这里这一部分算是结束了 hhh，其实这部分介绍主要是理清思路的，除了操作函数外，所有的代码都不用手写的 hhh，而我们的 STM32CubeMX 就是干这个的，图形化生成出来的就是时钟设定、以及各个外设与端口的设定代码，实际上也就解答了大部分 STM32CubeMX 怎么配置的问题（除了时钟树）&lt;/p>
+&lt;/blockquote>
+&lt;h1 id="一点灯">一、点灯
+&lt;/h1>&lt;blockquote>
+&lt;p>[!Note]
+前期只使用 PIO 自带配置创建项目&lt;/p>
+&lt;/blockquote>
+&lt;p>PIO 的项目代码内部不需要 &lt;code>SystemClock_Config()&lt;/code> 函数来初始化时钟，起码自带配置创建时是不需要的，加上能过编译烧录……但是会 HardFault&lt;/p>
+&lt;p>点灯代码如下：&lt;/p></description></item></channel></rss>
